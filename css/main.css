@@ -1003,10 +1003,6 @@ a:focus {
   display: block;
 }
 
-.header .country-list.active-click {
-  display: block;
-}
-
 .header .country-list__item {
   white-space: nowrap;
   -webkit-transition: all 0.1s linear;

@@ -3,24 +3,11 @@ const footerCounty = document.querySelector('.footer__country');
 const countryList = document.querySelector('.country-list');
 const countryItems = document.querySelectorAll('.country-list__item');
 
-navCountry.addEventListener('pointerover', function () {
+navCountry.addEventListener('mouseover', function () {
     listActive();
 })
 
-navCountry.addEventListener('click', function () {
-    if (countryList.style.display) {
-        countryList.classList.remove('active');
-        countryList.style.display = '';
-    } else {
-        countryList.style.display = 'block';
-    }
-})
-
-navCountry.addEventListener('pointerout', function () {
-    listNotActive();
-})
-
-countryList.addEventListener('pointerout', function () {
+navCountry.addEventListener('mouseout', function () {
     listNotActive();
 })
 
@@ -32,6 +19,7 @@ countryItems.forEach(item => item.addEventListener('click', function () {
     navCountry.innerHTML = buffer;
     setFlag()
     sortCountry();
+    countryList.style.display = 'none';
 }));
 
 footerCounty.onclick = () => {
@@ -44,6 +32,7 @@ footerCounty.onclick = () => {
 
 function listActive() {
     setTimeout(() => {
+        countryList.style.display = '';
         countryList.classList.add('active');
     }, 100);
 }
