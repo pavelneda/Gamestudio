@@ -1,4 +1,84 @@
+const navCountry = document.querySelector('.navigation__country');
+const footerCounty = document.querySelector('.footer__country');
+const countryList = document.querySelector('.country-list');
+const countryItems = document.querySelectorAll('.country-list__item');
 
+navCountry.addEventListener('pointerover', function () {
+    listActive();
+})
+
+navCountry.addEventListener('click', function () {
+    if (countryList.style.display) {
+        countryList.classList.remove('active');
+        countryList.style.display = '';
+    } else {
+        countryList.style.display = 'block';
+    }
+})
+
+navCountry.addEventListener('pointerout', function () {
+    listNotActive();
+})
+
+countryList.addEventListener('pointerout', function () {
+    listNotActive();
+})
+
+countryItems.forEach(item => item.addEventListener('click', function () {
+    footerCounty.innerHTML = item.innerHTML;
+    let buffer = item.innerHTML;
+    item.innerHTML = navCountry.innerHTML;
+    navCountry.classList.remove(nameCountry());
+    navCountry.innerHTML = buffer;
+    setFlag()
+    sortCountry();
+}));
+
+footerCounty.onclick = () => {
+    window.scrollTo(pageYOffset, 0);
+    listActive();
+    setTimeout(() => {
+        listNotActive();
+    }, 3000);
+}
+
+function listActive() {
+    setTimeout(() => {
+        countryList.classList.add('active');
+    }, 100);
+}
+
+function listNotActive() {
+    setTimeout(() => {
+        countryList.classList.remove('active');
+    }, 200);
+}
+
+function sortCountry() {
+    let arr = [];
+    countryItems.forEach(item => {
+        arr.push(item.innerHTML);
+    });
+    arr.sort();
+    for (const key in countryItems) {
+        countryItems[key].innerHTML = arr[key];
+    }
+}
+
+function nameCountry() {
+    let name = navCountry.innerHTML.toLowerCase();
+    name = name.replace(/ /g, "-");
+    return name;
+}
+
+function setFlag() {
+    navCountry.classList.add(nameCountry());
+}
+
+
+
+setFlag();
+sortCountry();
 const slider = document.querySelector('.whoWeAre__slider');
 const prev = slider.querySelector('.prev');
 const next = slider.querySelector('.next');

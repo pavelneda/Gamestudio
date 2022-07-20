@@ -601,6 +601,10 @@ textarea {
   content: "\e902";
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font: 18px "Gotham", sans-serif;
   background: #fafafa;
@@ -828,7 +832,7 @@ a:focus {
   border-bottom: #eeeeee 1px solid;
 }
 
-.header .navigation__top div:nth-child(2) {
+.header .navigation__top > div:nth-child(2) {
   border-left: #eeeeee 1px solid;
   margin-left: 60px;
 }
@@ -846,6 +850,8 @@ a:focus {
   -webkit-transition: all 0.1s linear;
   -o-transition: all 0.1s linear;
   transition: all 0.1s linear;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
 }
 
 .header .navigation__mail:hover,
@@ -871,13 +877,32 @@ a:focus {
 }
 
 .header .navigation__country {
-  cursor: pointer;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
   outline: none;
+  padding-right: 23px;
 }
 
-.header .navigation__country::after {
-  background: url(../img/icon-sweden.png) no-repeat 53% 50%;
+.header .navigation__country.sweden::after {
+  background: url(../img/icon-sweden.png) no-repeat 53% 50%/16px;
+}
+
+.header .navigation__country.ukraine::after {
+  background: url(../img/icon-Ukraine.png) no-repeat 53% 50%/16px;
+}
+
+.header .navigation__country.poland::after {
+  background: url(../img/icon-Poland.png) no-repeat 53% 50%/16px;
+}
+
+.header .navigation__country.england::after {
+  background: url(../img/icon-England.png) no-repeat 53% 50%/16px;
+}
+
+.header .navigation__country.united-states::after {
+  background: url(../img/icon-United_States.png) no-repeat 53% 50%/16px;
+}
+
+.header .navigation__country.with-arrow::before {
+  right: 0;
 }
 
 .header .navigation__link {
@@ -954,6 +979,53 @@ a:focus {
 .header .navigation__social-youtube::before {
   content: "\e900";
   left: 24%;
+}
+
+.header .country-list-wrapper {
+  position: relative;
+}
+
+.header .country-list {
+  display: none;
+  background: #fff;
+  position: absolute;
+  left: 59px;
+  top: 65px;
+  padding: 15px 20px;
+  z-index: 1000;
+  line-height: 1.5;
+  -webkit-transition: all 1s linear;
+  -o-transition: all 1s linear;
+  transition: all 1s linear;
+}
+
+.header .country-list.active {
+  display: block;
+}
+
+.header .country-list.active-click {
+  display: block;
+}
+
+.header .country-list__item {
+  white-space: nowrap;
+  -webkit-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+  cursor: pointer;
+}
+
+.header .country-list__item:hover {
+  color: #eb5635;
+}
+
+.header .country-list div + div {
+  margin-top: 10px;
+}
+
+.header .country-list:hover {
+  display: block;
 }
 
 .header__inner {
