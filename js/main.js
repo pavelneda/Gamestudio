@@ -68,6 +68,73 @@ function setFlag() {
 
 setFlag();
 sortCountry();
+const navigation = document.querySelector('.navigation');
+const nav = navigation.querySelector('nav');
+const overlay = navigation.querySelector('.overlay');
+const megamenu = navigation.querySelector('.megamenu');
+const menuLinks = nav.querySelectorAll('a.with-arrow');
+
+menuLinks.forEach(link => link.addEventListener('mouseover', function () {
+    let json = link.dataset.link;
+    let data = JSON.parse(json);
+    dataMegamenu(data);
+
+    const allLinks = megamenu.querySelectorAll('a');
+    allLinks.forEach(link => {
+        link.onclick = megamenuNotActive;
+    });
+
+    megamenuActive();
+    const linkWrapper = link.closest('.navigation__link');
+    linkWrapper.addEventListener('mouseleave', function (e) {
+        if (!(e.relatedTarget === megamenu)) {
+            megamenuNotActive();
+        };
+    })
+}));
+
+megamenu.addEventListener('mouseleave', function () {
+    megamenuNotActive();
+})
+
+
+function megamenuActive() {
+    overlay.classList.add('active');
+    megamenu.classList.add('active');
+}
+
+function megamenuNotActive() {
+    overlay.classList.remove('active');
+    megamenu.classList.remove('active');
+}
+
+function dataMegamenu(data) {
+    const collumns = megamenu.querySelectorAll('.megamenu__collumn');
+    collumns.forEach(collumn => {
+        collumn.innerHTML = ``;
+    });
+    for (let i = 0; i < data.length; i++) {
+        const title = data[i].title;
+        const links = data[i].links;
+        let innerHTML = `
+        <a href="#">
+            <h2 class="megamenu__title">
+                ${title}
+            </h2>
+        </a>`;
+        links.forEach(link => {
+            innerHTML += `
+            <div class="megamenu__link-wrapper">
+                <a href="#" class="megamenu__link">
+                    ${link}
+                </a>
+            </div>
+            `;
+        });
+        collumns[i].innerHTML = innerHTML;
+    }
+}
+
 const slider = document.querySelector('.whoWeAre__slider');
 const prev = slider.querySelector('.prev');
 const next = slider.querySelector('.next');

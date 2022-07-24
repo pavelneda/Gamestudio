@@ -802,6 +802,7 @@ a:focus {
   width: 100%;
   color: #2e343b;
   font-size: 15px;
+  z-index: 10;
 }
 
 .header .navigation a {
@@ -817,6 +818,7 @@ a:focus {
 
 .header .navigation__top,
 .header .navigation nav {
+  background: white;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -824,6 +826,7 @@ a:focus {
   -ms-flex-align: center;
   align-items: center;
   padding: 0 40px;
+  z-index: 100;
 }
 
 .header .navigation__top {
@@ -1022,6 +1025,55 @@ a:focus {
 
 .header .country-list:hover {
   display: block;
+}
+
+.header .overlay {
+  z-index: -1;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.2);
+  display: none;
+}
+
+.header .overlay.active {
+  display: block;
+}
+
+.header .megamenu {
+  background: #eee;
+  display: none;
+  grid-template-columns: repeat(4, 1fr);
+  padding: 30px 40px;
+  -webkit-transition: all 0.1s linear;
+  -o-transition: all 0.1s linear;
+  transition: all 0.1s linear;
+}
+
+.header .megamenu.active {
+  display: grid;
+}
+
+.header .megamenu__collumn div + div {
+  margin-top: 10px;
+}
+
+.header .megamenu__title {
+  margin-bottom: 15px;
+}
+
+.header .megamenu__link {
+  opacity: 0.7;
+}
+
+.header .megamenu a {
+  display: inline-block;
+}
+
+.header .megamenu a:hover {
+  color: #eb5635;
 }
 
 .header__inner {
