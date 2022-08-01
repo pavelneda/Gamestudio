@@ -749,12 +749,8 @@ a:focus {
 }
 
 .block-top {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: justify;
-  -ms-flex-pack: justify;
-  justify-content: space-between;
+  display: grid;
+  grid-template-columns: 300px 1fr;
 }
 
 .block-title {
@@ -772,10 +768,11 @@ a:focus {
   width: 50px;
   height: 7px;
   left: 3px;
-  bottom: -9px;
+  bottom: -13px;
 }
 
 .block-text {
+  justify-self: end;
   font-style: italic;
   font-weight: 350;
   font-size: 15px;
@@ -1148,6 +1145,7 @@ a:focus {
   display: grid;
   grid-template-columns: 2fr 1fr 2fr;
   gap: 13px;
+  padding-bottom: 10px;
 }
 
 .boxes__item-content {
@@ -1303,11 +1301,11 @@ a:focus {
 }
 
 .whoWeAre {
-  padding: 51px 0 42px;
+  padding: 41px 0 42px;
 }
 
 .whoWeAre__slider {
-  background: white;
+  background: #ffffff;
   margin-top: 60px;
   padding: 36px 25px;
   position: relative;
@@ -1871,8 +1869,26 @@ a:focus {
     line-height: 19px;
   }
 
+  .block-top {
+    grid-template-columns: 1fr;
+  }
+
+  .block-title {
+    font-size: 34px;
+  }
+
+  .block-text {
+    justify-self: left;
+    max-width: 100%;
+    margin-top: 30px;
+  }
+
   .header {
     padding: 150px 0 100px;
+  }
+
+  .header__inner {
+    padding-left: 0px;
   }
 
   .homefront {
@@ -1965,6 +1981,28 @@ a:focus {
     justify-content: center;
   }
 
+  .block-top {
+    text-align: center;
+  }
+
+  .block-title {
+    font-size: 32px;
+  }
+
+  .block-title::after {
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    bottom: -11px;
+  }
+
+  .block-text {
+    font-size: 14px;
+    line-height: 22px;
+    margin-top: 21px;
+  }
+
   .header {
     background-position: 0%;
   }
@@ -2011,6 +2049,33 @@ a:focus {
   .boxes .btn-default {
     font-size: 13px;
   }
+
+  .whoWeAre__slider {
+    margin-top: 40px;
+    padding-bottom: 99px;
+  }
+
+  .whoWeAre__wrapper {
+    margin: 0;
+  }
+
+  .whoWeAre__button {
+    top: 115px;
+  }
+
+  .whoWeAre__button.prev {
+    left: 50%;
+    -webkit-transform: translateX(-125%);
+    -ms-transform: translateX(-125%);
+    transform: translateX(-125%);
+  }
+
+  .whoWeAre__button.next {
+    right: 50%;
+    -webkit-transform: translateX(125%);
+    -ms-transform: translateX(125%);
+    transform: translateX(125%);
+  }
 }
 
 @media (max-width: 425px) {
@@ -2027,6 +2092,15 @@ a:focus {
     margin-left: 5px;
   }
 
+  .block-title {
+    font-size: 30px;
+  }
+
+  .block-text {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
   .header {
     background-position: 30%;
   }
@@ -2037,5 +2111,39 @@ a:focus {
 
   .homefront__inner .btn-default:last-child {
     padding: 0 17px;
+  }
+
+  .boxes__inner {
+    grid-template-columns: minmax(auto, 250px);
+  }
+
+  .boxes__item {
+    -webkit-box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
+    min-height: 400px;
+  }
+
+  .boxes__item-content {
+    width: 100%;
+  }
+
+  .boxes__item.dishonored {
+    grid-column-start: auto;
+    grid-column-end: auto;
+  }
+
+  .boxes .btn-default {
+    -webkit-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 50%;
+  }
+
+  .whoWeAre__person-name {
+    font-size: 17px;
+  }
+
+  .whoWeAre__person-job {
+    font-size: 16px;
   }
 }
