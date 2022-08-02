@@ -1360,16 +1360,24 @@ a:focus {
 }
 
 .whoWeAre__slide.active {
-  -webkit-box-shadow: 0 0 0 4px #eb5635;
-  box-shadow: 0 0 0 4px #eb5635;
+  border: 4px solid #eb5635;
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box;
+  margin-top: -4px;
+  margin-left: 3px !important;
+  margin-right: -4px;
+}
+
+.whoWeAre__slide:first-child.active {
+  margin-left: -4px !important;
+}
+
+.whoWeAre__slide:last-child.active {
+  margin-right: 0;
 }
 
 .whoWeAre__slide + .whoWeAre__slide {
   margin-left: 7px;
-}
-
-.whoWeAre__slide:last-child {
-  margin-right: 4px;
 }
 
 .whoWeAre__button {
