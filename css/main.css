@@ -1325,6 +1325,7 @@ a:focus {
   position: relative;
   scrollbar-width: none;
   -ms-overflow-style: none;
+  z-index: 10000;
 }
 
 .whoWeAre__wrapper::-webkit-scrollbar {
@@ -2059,11 +2060,10 @@ a:focus {
 
   .whoWeAre__wrapper {
     margin: 0;
-    margin-right: 4px;
   }
 
   .whoWeAre__button {
-    top: 105px;
+    top: 115px;
   }
 
   .whoWeAre__button.prev {
@@ -2153,6 +2153,7 @@ a:focus {
   }
 
   .whoWeAre__button {
+    top: 105px;
     max-width: 50px;
     max-height: 50px;
   }
