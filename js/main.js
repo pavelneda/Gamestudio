@@ -182,6 +182,12 @@ next.addEventListener('click', function () {
     }
 })
 
+next.addEventListener('dblclick', function (e) {
+    e.preventDefault();
+})
+
+
+
 prev.addEventListener('click', function () {
     const activeEl = slider.querySelector('.active');
     if (activeEl.previousSibling) {
@@ -194,6 +200,10 @@ prev.addEventListener('click', function () {
             activeEl.offsetParent.scrollLeft -= activeEl.clientWidth + margin;
         }
     }
+})
+
+prev.addEventListener('dblclick', function (e) {
+    e.preventDefault();
 })
 
 slides.forEach(slide => slide.addEventListener('click', function () {
