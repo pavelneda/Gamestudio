@@ -1368,6 +1368,10 @@ a:focus {
   margin-left: 7px;
 }
 
+.whoWeAre__slide:last-child {
+  margin-right: 4px;
+}
+
 .whoWeAre__button {
   background: #eb5635;
   max-width: 63px;
