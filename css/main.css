@@ -1192,7 +1192,9 @@ a:focus {
 
 .boxes__item.battelfied .btn-default {
   background: none;
-  outline: white 3px solid;
+  -webkit-box-shadow: 0 0 0 3px white;
+  box-shadow: 0 0 0 3px white;
+  border-color: transparent;
 }
 
 .boxes__item.battelfied .btn-default:hover {
@@ -1357,7 +1359,8 @@ a:focus {
 }
 
 .whoWeAre__slide.active {
-  outline: #eb5635 4.5px solid;
+  -webkit-box-shadow: 0 0 0 4px #eb5635;
+  box-shadow: 0 0 0 4px #eb5635;
 }
 
 .whoWeAre__slide + .whoWeAre__slide {
