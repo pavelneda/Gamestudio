@@ -1,3 +1,22 @@
+const body = document.body;
+
+let disableScroll = function () {
+	let pagePosition = window.scrollY;
+	document.body.classList.add('disable-scroll');
+	document.body.dataset.position = pagePosition;
+	document.body.style.top = -pagePosition + 'px';
+}
+
+let enableScroll = function () {
+	let pagePosition = parseInt(document.body.dataset.position, 10);
+	document.body.style.top = 'auto';
+	document.body.classList.remove('disable-scroll');
+	document.querySelector('html').style.scrollBehavior = 'auto';
+	window.scroll({ top: pagePosition, left: 0 });
+	document.querySelector('html').style.scrollBehavior = '';
+	document.body.removeAttribute('data-position');
+}
+
 const navCountry = document.querySelector('.navigation__country');
 const footerCounty = document.querySelector('.footer__country');
 const countryList = document.querySelector('.country-list');
@@ -66,13 +85,16 @@ function setFlag() {
 
 
 
-setFlag();
-sortCountry();
 const navigation = document.querySelector('.navigation');
 const nav = navigation.querySelector('nav');
 const overlay = navigation.querySelector('.overlay');
 const megamenu = navigation.querySelector('.megamenu');
 const menuLinks = nav.querySelectorAll('a.with-arrow');
+const menuLinksAll = nav.querySelectorAll('.navigation__link a');
+
+const menuToggle = document.querySelector('#menu__toggle');
+const menuBtn = document.querySelector('.menu__btn');
+const menuBox = document.querySelector('.menu__box');
 
 menuLinks.forEach(link => link.addEventListener('mouseover', function () {
     let json = link.dataset.link;
@@ -96,6 +118,23 @@ menuLinks.forEach(link => link.addEventListener('mouseover', function () {
 megamenu.addEventListener('mouseleave', function () {
     megamenuNotActive();
 })
+
+
+menuBtn.addEventListener('click', function () {
+    if (!menuToggle.checked) {
+        overlay.classList.add('active');
+        disableScroll();
+    } else {
+        megamenuNotActive();
+        enableScroll();
+    }
+})
+
+overlay.addEventListener('click', function () {
+    closeBurgerMenu();
+})
+
+window.onresize = checkSize;
 
 
 function megamenuActive() {
@@ -135,6 +174,72 @@ function dataMegamenu(data) {
     }
 }
 
+function checkSize() {
+    if (window.innerWidth <= 992) {
+        closeBurgerMenu();
+
+        let innerHTML = '';
+        menuLinksAll.forEach(link => {
+            let inner = '';
+
+            if (link.dataset.link) {
+                let json = link.dataset.link;
+                let data = JSON.parse(json);
+
+                for (let i = 0; i < data.length; i++) {
+                    const links = data[i].links;
+                    links.forEach(link => {
+                        inner += `<a href="#">${link}</a>`;
+                    });
+                }
+            }
+
+            innerHTML += `<li>
+                ${link.outerHTML}
+                <div class="content-wrapper">
+                    <div class="content">
+                        ${inner}
+                    </div>
+                </div>
+                </li>`;
+        });
+        menuBox.innerHTML = innerHTML;
+        acordion();
+    }
+}
+
+function closeBurgerMenu() {
+    if (overlay.classList.contains('active')) {
+        menuToggle.checked = false;
+        megamenuNotActive();
+        enableScroll();
+    }
+}
+
+function acordion() {
+    menuBox.querySelectorAll('a').forEach(el => {
+        el.addEventListener('click', function (e) {
+            if (!el.classList.contains('with-arrow')) {
+                closeBurgerMenu();
+            }
+        })
+    })
+
+    menuBox.querySelectorAll('.with-arrow').forEach(el => {
+        el.addEventListener('click', function (e) {
+            e.preventDefault();
+            let content = el.nextElementSibling;
+
+            if (content.style.maxHeight) {
+                content.style.maxHeight = '';
+                el.classList.remove('active');
+            } else {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                el.classList.add('active');
+            }
+        })
+    })
+}
 const slider = document.querySelector('.whoWeAre__slider');
 const prev = slider.querySelector('.prev');
 const next = slider.querySelector('.next');
@@ -222,3 +327,7 @@ slider.addEventListener('click', function () {
 })
 
 
+
+checkSize();
+setFlag();
+sortCountry();
