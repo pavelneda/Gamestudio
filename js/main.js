@@ -176,8 +176,6 @@ function dataMegamenu(data) {
 
 function checkSize() {
     if (window.innerWidth <= 992) {
-        closeBurgerMenu();
-
         let innerHTML = '';
         menuLinksAll.forEach(link => {
             let inner = '';
@@ -205,6 +203,8 @@ function checkSize() {
         });
         menuBox.innerHTML = innerHTML;
         acordion();
+    }else{
+       closeBurgerMenu();
     }
 }
 
