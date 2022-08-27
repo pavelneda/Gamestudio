@@ -1818,7 +1818,7 @@ a:focus {
   display: none;
 }
 
-.more .block-title:hover {
+.more .block-title:active {
   color: #eb5635;
 }
 
