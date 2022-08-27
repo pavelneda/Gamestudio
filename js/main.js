@@ -58,8 +58,13 @@ countryItems.forEach(item => {
 
 
 footerCountry.onclick = () => {
-    if (window.innerWidth > 576) {
+    if (window.innerWidth > 992) {
         window.scrollTo(pageYOffset, 0);
+        listActive();
+        setTimeout(() => {
+            listNotActive();
+        }, 3000);
+    } else if (window.innerWidth > 576) {
         listActive();
         setTimeout(() => {
             listNotActive();
