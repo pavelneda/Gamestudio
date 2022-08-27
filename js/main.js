@@ -290,6 +290,7 @@ function acordion() {
         el.addEventListener('click', function (e) {
             if (!el.classList.contains('with-arrow')) {
                 closeBurgerMenu();
+                el.closest('li').querySelector('.with-arrow').click();
             }
         })
     })
@@ -313,6 +314,8 @@ function acordion() {
 function activateChanger() {
     menuBox.querySelectorAll('.country-list__item').forEach(item => {
         item.addEventListener('click', function(){
+            item.closest('li').querySelector('.with-arrow').click();
+
             document.querySelector('.country-list-wrapper').querySelector('.country-list').childNodes[getNum(item)].click();
             closeBurgerMenu();
         })
